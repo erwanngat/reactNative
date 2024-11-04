@@ -1,8 +1,8 @@
 import React from "react";
+import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import GoalInput from "./components/GoalInput";
 import GoalList from "./components/GoalList";
-import { StatusBar } from "expo-status-bar";
 import useGoals from "./hooks/useGoals";
 
 const backgroundImage = require("./assets/bg-image.jpg");

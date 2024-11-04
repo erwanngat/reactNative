@@ -1,16 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import GoalInput from "./components/GoalInput";
 import GoalList from "./components/GoalList";
 import { StatusBar } from "expo-status-bar";
 import useGoals from "./hooks/useGoals";
 
+const backgroundImage = require("./assets/bg-image.jpg");
+
 export default function App() {
-  const { goals, text, setText, deleteGoalHandler, addGoalHandler } =
-    useGoals();
+  const { goals, text, setText, deleteGoalHandler, addGoalHandler } = useGoals();
 
   return (
-    <View style={styles.container}>
+    <ImageBackground source={backgroundImage} style={styles.container}>
       <View style={styles.title}>
         <Text style={styles.titleText}>List of objectives</Text>
       </View>
@@ -21,7 +22,7 @@ export default function App() {
         onChangeText={setText}
         onAddGoal={addGoalHandler}
       />
-    </View>
+    </ImageBackground>
   );
 }
 

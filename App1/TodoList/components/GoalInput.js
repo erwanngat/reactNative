@@ -21,16 +21,16 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "gray",
     borderWidth: 1,
-    marginTop: 20,
+    marginTop: 10,
     paddingHorizontal: 10,
   },
   addGoal: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 10,
   },
   buttonAddContainer: {
-    paddingTop: 18,
+    paddingTop: 10,
     marginLeft: 10,
   },
 });

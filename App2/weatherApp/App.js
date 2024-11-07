@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
 import * as Location from "expo-location";
-import axios from "axios";
+import useWeather from "./hooks/useWeather";
 import CurrentWeather from "./components/CurrentWeather";
 import WeatherList from "./components/WeatherList";
 
-const API_KEY = "027aab9182874bd06c881a033c3aed4f";
-const BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
-const CURRENT_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
-
 export default function App() {
   const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [weather, setWeather] = useState(null);
-  const [currentWeather, setCurrentWeather] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const {
+    weather,
+    currentWeather,
+    loading,
+    errorMsg,
+    fetchWeather,
+    fetchCurrentWeather,
+  } = useWeather();
 
   useEffect(() => {
     const getLocationPermission = async () => {
@@ -33,55 +33,6 @@ export default function App() {
     getLocationPermission();
   }, []);
 
-  const fetchWeather = async (latitude, longitude) => {
-    setLoading(true);
-    setErrorMsg(null);
-
-    try {
-      const response = await axios.get(BASE_URL, {
-        params: {
-          lat: latitude,
-          lon: longitude,
-          appid: API_KEY,
-          units: "metric",
-          lang: "en",
-        },
-      });
-
-      if (response.data && response.data.list) {
-        setWeather(response.data);
-      } else {
-        setErrorMsg("No weather data available");
-      }
-    } catch (error) {
-      setErrorMsg("Error fetching weather data");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchCurrentWeather = async (latitude, longitude) => {
-    try {
-      const response = await axios.get(CURRENT_WEATHER_URL, {
-        params: {
-          lat: latitude,
-          lon: longitude,
-          appid: API_KEY,
-          units: "metric",
-          lang: "en",
-        },
-      });
-
-      if (response.data) {
-        setCurrentWeather(response.data);
-      } else {
-        setErrorMsg("No current weather data available");
-      }
-    } catch (error) {
-      setErrorMsg("Error fetching current weather data");
-    }
-  };
-
   const formatDate = (timestamp) => {
     const date = new Date(timestamp * 1000);
     return `${date.getHours()}:${
@@ -89,7 +40,6 @@ export default function App() {
     }${date.getMinutes()}`;
   };
 
-  // Fonction pour grouper les prévisions par jour
   const groupWeatherByDay = (weatherData) => {
     const groupedData = [];
     let currentDay = null;
@@ -128,7 +78,7 @@ export default function App() {
         <ScrollView style={styles.scrollView}>
           <CurrentWeather weather={currentWeather} formatDate={formatDate} />
           <WeatherList
-            weatherData={groupWeatherByDay(weather.list)} // Passe la fonction ici
+            weatherData={groupWeatherByDay(weather.list)}
             formatDate={formatDate}
           />
         </ScrollView>

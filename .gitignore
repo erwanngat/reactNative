@@ -2,11 +2,15 @@
 
 # dependencies
 App1/node_modules/
+App2/node_modules/
 
 # Expo
 App1/.expo/
 App1/dist/
 App1/web-build/
+App2/.expo/
+App2/dist/
+App2/web-build/
 
 # Native
 *App1/.orig.*
@@ -15,21 +19,35 @@ App1/web-build/
 *App1/.p12
 *App1/.key
 *App1/.mobileprovision
+*App2/.orig.*
+*App2/.jks
+*App2/.p8
+*App2/.p12
+*App2/.key
+*App2/.mobileprovision
 
 # Metro
 App1/.metro-health-check*
+App2/.metro-health-check*
 
 # debug
 App1/npm-debug.*
 App1/yarn-debug.*
 App1/yarn-error.*
+App2/npm-debug.*
+App2/yarn-debug.*
+App2/yarn-error.*
 
 # macOS
 App1/.DS_Store
 App1/*.pem
+App2/.DS_Store
+App2/*.pem
 
 # local env files
 App1/.env*.local
+App2/.env*.local
 
 # typescript
 *App1/.tsbuildinfo
+*App2/.tsbuildinfo

@@ -16,10 +16,7 @@ const GoalInput = ({ text, onChangeText, onAddGoal }) => (
       placeholder="Enter a new goal"
     />
     <View style={styles.buttonAddContainer}>
-      <TouchableOpacity
-        onPress={onAddGoal}
-        activeOpacity={0.7}
-      >
+      <TouchableOpacity onPress={onAddGoal} activeOpacity={0.7}>
         <View style={styles.button}>
           <Text style={styles.buttonText}>Add a new goal</Text>
         </View>

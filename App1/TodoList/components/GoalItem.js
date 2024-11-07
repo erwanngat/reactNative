@@ -1,9 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const GoalItem = ({ item, index, onDelete }) => (
+const GoalItem = ({ item, index, onDelete, onEdit }) => (
   <View style={styles.item}>
     <Text style={styles.text}>{item}</Text>
+    <TouchableOpacity onPress={() => onEdit(index)}>
+      <Text style={styles.icon}>✏️</Text>
+    </TouchableOpacity>
     <TouchableOpacity onPress={() => onDelete(index)}>
       <Text style={styles.deleteText}>❌</Text>
     </TouchableOpacity>

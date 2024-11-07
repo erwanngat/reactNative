@@ -14,7 +14,9 @@ const useGoals = () => {
     "Organiser un meetup autour de la tech",
     "Faire un triathlon",
   ]);
+  
   const [text, setText] = useState("");
+  const [editingGoal, setEditingGoal] = useState(null);
 
   const deleteGoalHandler = (index) => {
     setGoals((currentGoals) => {
@@ -33,12 +35,32 @@ const useGoals = () => {
     }
   };
 
+  const editGoalHandler = (index) => {
+    setEditingGoal(index);
+    setText(goals[index]);
+  };
+
+  const saveGoalHandler = () => {
+    if (text) {
+      const updatedGoals = [...goals];
+      updatedGoals[editingGoal] = text;
+      setGoals(updatedGoals);
+      setText("");
+      setEditingGoal(null);
+    } else {
+      Alert.alert("Erreur", "Please enter a goal.");
+    }
+  };
+
   return {
     goals,
     text,
     setText,
     deleteGoalHandler,
     addGoalHandler,
+    editGoalHandler,
+    saveGoalHandler,
+    editingGoal,
   };
 };
 

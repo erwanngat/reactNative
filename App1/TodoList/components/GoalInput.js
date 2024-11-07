@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   button: {
+    rippleColor:"#FF000020",
+    icon:"camera",
+    mode:"contained",
     backgroundColor: "#007BFF",
     paddingVertical: 12,
     paddingHorizontal: 20,

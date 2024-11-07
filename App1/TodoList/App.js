@@ -54,14 +54,7 @@ export default function App() {
               onChangeText={setText}
               placeholder="New objectif"
             />
-            <Button title="Save" onPress={saveGoalHandler} />
-            <Button
-              title="Cancel"
-              onPress={() => {
-                setText("");
-                setEditingGoal(null);
-              }}
-            />
+            <Button title="Save" onPress={saveGoalHandler}/>
           </View>
         </View>
       </Modal>
